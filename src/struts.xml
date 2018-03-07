@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <package name="day01" namespace="/" extends="struts-default">
+        <action name="login" class="com.dtt.edu.action.LoginAction" method="login">
+            <result name="success">main/main.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+        <!--主页面中查询员工通讯录-->
+        <action name="listu" class="com.dtt.edu.action.LoginAction" method="findygtxl">
+            <result name="success">main/mainRight.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+
+        <action name="listwf" class="com.dtt.edu.action.LoginAction" method="listwf">
+            <result name="success">main/mainRight.jsp</result>
+            <result name="error">login.jsp</result>
+        </action>
+
+        <!--新建汇报-->
+        <action name="newhb" class="com.dtt.edu.action.HuiBaoAction" method="newHB">
+            <result name="success">zhoubao/xinjian.jsp</result>
+            <result name="zb">zhoubao/xinjian.jsp</result>
+            <result name="yb">yuebao/xinjian.jsp</result>
+            <result name="nb">nianbao/xinjian.jsp</result>
+        </action>
+
+        <!--发送汇报-->
+        <action name="sashb" class="com.dtt.edu.action.HuiBaoAction" method="sashb">
+            <result name="success">zhoubao/xinjian.jsp</result>
+            <result name="zb">zhoubao/xinjian.jsp</result>
+            <result name="yb">yuebao/xinjian.jsp</result>
+            <result name="nb">nianbao/xinjian.jsp</result>
+        </action>
+
+        <!--待发汇报的发送-->
+        <action name="upsashb" class="com.dtt.edu.action.HuiBaoAction" method="upsashb">
+            <result name="success">zhoubao/daifalist.jsp</result>
+            <result name="zb">zhoubao/daifalist.jsp</result>
+            <result name="yb">yuebao/daifalist.jsp</result>
+            <result name="nb">nianbao/daifalist.jsp</result>
+        </action>
+
+        <!--代发汇报-->
+        <action name="daihb" class="com.dtt.edu.action.HuiBaoAction" method="daiHB">
+            <result name="success">zhoubao/daifalist.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+            <result name="zb">zhoubao/daifalist.jsp</result>
+            <result name="yb">yuebao/daifalist.jsp</result>
+            <result name="nb">nianbao/daifalist.jsp</result>
+        </action>
+
+        <!--已发汇报-->
+        <action name="yihb" class="com.dtt.edu.action.HuiBaoAction" method="yiHB">
+            <result name="success">zhoubao/yifalist.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+            <result name="zb">zhoubao/yifalist.jsp</result>
+            <result name="yb">yuebao/yifalist.jsp</result>
+            <result name="nb">nianbao/yifalist.jsp</result>
+        </action>
+
+        <!--收件箱汇报-->
+        <action name="savehb" class="com.dtt.edu.action.HuiBaoAction" method="saveHB">
+            <result name="success">shoujianxianglist.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+
+        </action>
+
+        <!--超级管理员收件箱汇报-->
+        <action name="saveall" class="com.dtt.edu.action.HuiBaoAction" method="saveall">
+            <result name="success">managersjxlist.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+
+        </action>
+
+        <!--代发汇报-->
+        <action name="deleteHB" class="com.dtt.edu.action.HuiBaoAction" method="deleteHB">
+            <result name="success">main/mainRight.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+        </action>
+        <action name="fasongHB" class="com.dtt.edu.action.HuiBaoAction" method="fasongHB">
+            <result name="success">main/mainRight.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+        </action>
+        <action name="bianji" class="com.dtt.edu.action.HuiBaoAction" method="bianji">
+            <result name="success">zhoubao/daifa.jsp</result>
+            <result name="zb">zhoubao/daifa.jsp</result>
+            <result name="yb">yuebao/daifa.jsp</result>
+            <result name="nb">nianbao/daifa.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+        </action>
+        <action name="watch" class="com.dtt.edu.action.HuiBaoAction" method="watch">
+            <result name="success">zhoubao/yifa.jsp</result>
+            <result name="zb">zhoubao/yifa.jsp</result>
+            <result name="yb">yuebao/yifa.jsp</result>
+            <result name="nb">nianbao/yifa.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+        </action>
+
+        <action name="pifu" class="com.dtt.edu.action.HuiBaoAction" method="pifu">
+            <result name="success">zhoubao/showzhoubao.jsp</result>
+            <result name="zb">zhoubao/showzhoubao.jsp</result>
+            <result name="yb">yuebao/showyuebao.jsp</result>
+            <result name="nb">nianbao/shownianbao.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+        </action>
+
+        <!--退出系统-->
+        <action name="exit" class="com.dtt.edu.action.LoginAction" method="exit">
+            <result name="success">login.jsp</result>
+        </action>
+        <!--返回页面-->
+        <action name="back" class="com.dtt.edu.action.HuiBaoAction" method="back">
+            <result name="success">shoujianxianglist.jsp</result>
+        </action>
+        <action name="pwfs" class="com.dtt.edu.action.HuiBaoAction" method="pwfs">
+            <result name="success">shoujianxianglist.jsp</result>
+        </action>
+
+        <!--员工管理-->
+        <action name="m_staff" class="com.dtt.edu.action.ManageAction" method="Mstaff">
+            <result name="success">cjglyyglist.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+
+        </action>
+
+        <!--员工管理-->
+        <action name="m_bm" class="com.dtt.edu.action.ManageAction" method="Mbm">
+            <result name="success">bumenlist.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+
+        </action>
+
+        <!--员工管理-->
+        <action name="change" class="com.dtt.edu.action.ManageAction" method="change">
+            <result name="success">updateself.jsp</result>
+            <result name="error">main/mainRight.jsp</result>
+
+        </action>
+        <!--发送汇报-->
+        <action name="update" class="com.dtt.edu.action.ManageAction" method="update">
+            <result name="success">cjglyyglist.jsp</result>
+        </action>
+    </package>
+
+
+</struts>

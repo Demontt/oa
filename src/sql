@@ -1,0 +1,92 @@
+create database gzhb;
+show tables;
+#用户表
+create table user(
+	id int auto_increment primary key,
+	gh varchar(20),#工号，在注册的时候自动产生。当前日期加id
+	name varchar(50),
+	pwd varchar(50),
+	phone varchar(20),
+	pow int default 0,#权限，0:表示普通员工。1:表示管理员。2:表示超级管理员
+	manager_id int default 0,#0:表示没有上级，即最高上司，超级管理员用户。
+	bm_id int#部门ID。
+);
+#超级管理员用户
+insert into user(gh,name,pwd,phone,pow,manager_id,bm_id)
+values("201711151","a","201711151","12345678901",2,0,1);
+#管理员用户
+insert into user(gh,name,pwd,phone,pow,manager_id,bm_id)
+values("201711152","b","201711152","12345678901",1,1,2);
+insert into user(gh,name,pwd,phone,pow,manager_id,bm_id)
+values("201711153","c","201711153","12345678901",1,1,2);
+#普通用户
+insert into user(gh,name,pwd,phone,pow,manager_id,bm_id)
+values("201711154","d","201711154","12345678901",0,2,3);
+insert into user(gh,name,pwd,phone,pow,manager_id,bm_id)
+values("201711155","e","201711155","12345678901",0,2,3);
+insert into user(gh,name,pwd,phone,pow,manager_id,bm_id)
+values("201711156","f","201711156","12345678901",0,3,4);
+
+#部门表
+create table bumen(
+	id int auto_increment primary key,
+	name varchar(20)
+);
+insert into bumen(name) values("一部");
+insert into bumen(name) values("二部");
+insert into bumen(name) values("三部");
+insert into bumen(name) values("四部");
+
+#汇报表
+create table hb{
+    id int auto_increment primary key,
+    ty int,#汇报类型。0-周报 ； 1-月报 ； 2-年报
+    rq varchar(20),#汇报创建的日期；xxx年xx月xx日
+    zyys int,#周数/月度/年度
+    bm_name varchar(20),#部门名称
+    m_name varchar(20),#领导名字
+    csren varchar(20),#抄送人名字
+    user_id int,#发件人
+    st int#汇报状态。 0-表示没有邮件； 1-已经发送； 2-等待发送； 3-已经批阅
+}
+
+
+#本周/本月/本年度表，作为汇报表的延伸表(子表)
+create table nowtask(
+    id int auto_increment primary key,
+    cdtask varchar(3000),#承担任务
+    xdrq varchar(30),#下达日期,日期格式:xxx年xxx月xxx日
+    wcrq varchar(30),#完成日期,日期格式:xxx年xxx月xxx日
+    hb_id int,#汇报id:用户id+汇报类型
+)
+
+#下周/下月/下年度表，作为汇报表的延伸表(子表)
+create table nexttask(
+    id int auto_increment primary key,
+    cdtask varchar(3000),#承担任务
+    rq varchar(30),#预计完成日期,日期格式:xxx年xxx月xxx日
+    zr varchar(30),#责任人
+    xtbm varchar(30),#协调部门
+    bz varchar(3000),#备注
+    hb_id int,#汇报id
+)
+
+#合理化问题表，作为汇报表的延伸表存在
+create table wenti(
+    id int auto_increment primary key,
+    cdtask varchar(3000),#承担任务
+    zywt varchar(3000),#主要问题
+    dcjjy varchar(3000),#对策及建议
+    hb_id int,#汇报id
+)
+
+
+#批报，作为汇报表的延伸表(子表)
+create table piwen(
+    id int auto_increment primary key,
+    m_bm varchar(30),
+    m_name varchar(30),
+    des varchar(3000),
+    hb_id int,
+    sj varchar(20)
+)
